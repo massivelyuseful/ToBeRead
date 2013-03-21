@@ -1,0 +1,10 @@
+ToBeRead - an HTML5 application for a digital 'to be read' shelf
+
+Created in 2013 by Dan Becker danbecke@uw.edu for Master's Thesis
+at University of Washington Bothell Computer Science & Engineering
+
+- reads books from sources such as Google Books 
+- displays book cover images in a responsive web design suitable for
+  devices from smartphones to HDTV's
+- addresses the problem that ebooks and other digital reading has
+  no physical presence or visibility when you aren't reading it
