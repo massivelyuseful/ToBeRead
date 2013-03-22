@@ -1,20 +1,4 @@
 
 .idea/workspace.xml
 
-images/samples/FotR-medium.jpg
-
-images/samples/hobbit-200px-wide.png
-
-images/samples/hobbit.gif
-
-images/samples/TheReturnoftheKing-large.jpg
-
-images/samples/how-buildings-learn-medium.jpg
-
-images/samples/not-so-big-house.jpg
-
-*.jpg
-
-designshack.css
-
-designshack.html
+images/samples/*
