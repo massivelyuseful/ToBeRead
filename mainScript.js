@@ -8,20 +8,20 @@
 
 $(document).ready(function () {
 
-    function myBook (bookTitle, coverImageURL)  {
-        this.bookTitle = bookTitle;
-        this.coverImageURL = coverImageURL;
+    function myItem (itemTitle, imageURL)  {
+        this.itemTitle = itemTitle;
+        this.imageURL = imageURL;
     }
 
-    var myBooks = new Array();
+    var myItems = new Array();
 
-    function addBook (aBook) {
-        console.log("About to addBook", aBook.bookTitle, "at position" , myBooks.length )
-        myBooks[myBooks.length] = aBook;
+    function addItem (anItem) {
+        console.log("About to addItem", anItem.itemTitle, "at position" , myItems.length )
+        myItems[myItems.length] = anItem;
     }
 
     // load list of books from a local XML file - handy for bootstrapping, mockups, & testing
-    $("#load_xml").click(function(){
+    $("#load_xml_books").click(function(){
         $.ajax({
             url: "sampleBooks.xml",
             cache: false,
@@ -29,10 +29,10 @@ $(document).ready(function () {
             success: function (xml) {
                 var i = 0;
                 $(xml).find("book").each(function() {
-                        var img_url = $(this).find("coverImageURL").text();
-                        var book_title = $(this).find("bookTitle").text();
-                        addBook (new myBook(book_title, img_url));
-//                        myBooks[i] = new myBook(book_title, img_url);
+                        var img_url = $(this).find("imageURL").text();
+                        var book_title = $(this).find("itemTitle").text();
+                        addItem (new myItem(book_title, img_url));
+//                        myItems[i] = new myItem(book_title, img_url);
                         i = i+1;
                     }
                 );
@@ -41,7 +41,7 @@ $(document).ready(function () {
     });
 
     // load books from specified Google Books shelf
-    $("#load_google").click(function(){
+    $("#load_google_books").click(function(){
         // to get all the books from my public TBR shelf, I need to use a few things - hardcoding for now:
         // TODO: clean up hardcoding!
         // TODO: use OAuth 2 instead of API key
@@ -59,29 +59,29 @@ $(document).ready(function () {
                 for (var i = 0; i < json.items.length; i++) {
                     var book_title = json.items[i].volumeInfo.title;
                     var img_url = json.items[i].volumeInfo.imageLinks.thumbnail;
-                    addBook (new myBook(book_title, img_url));
+                    addItem (new myItem(book_title, img_url));
                 }
             }
         });
     });
 
     // handy way to clear data without reloading entire page
-    $("#drop_books").click(function(){
+    $("#drop_items").click(function(){
         // remove displayed data
-        for(var i = 0; i < myBooks.length; i++ ) {
-            var divID = "#bookTitle" + i;
+        for(var i = 0; i < myItems.length; i++ ) {
+            var divID = "#itemTitle" + i;
             $(divID).text("") ;
             var imgID = "#cover" + i;
             $(imgID).attr("src", "");
         }
-        myBooks.length = 0; // empty the array
+        myItems.length = 0; // empty the array
     });
 
-    // output the current myBooks to console.log
-    $("#console_books").click(function(){
-        console.log("Current contents of myBooks:");
-        for(var i = 0; i < myBooks.length; i++ ) {
-            console.log("  ", i, "|", myBooks[i].bookTitle, "|",myBooks[i].coverImageURL);
+    // output the current myItems to console.log
+    $("#console_items").click(function(){
+        console.log("Current contents of myItems:");
+        for(var i = 0; i < myItems.length; i++ ) {
+            console.log("  ", i, "|", myItems[i].itemTitle, "|",myItems[i].imageURL);
         }
 
 
