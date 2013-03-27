@@ -8,12 +8,12 @@ h1 {
 
 #page {
     margin : 0px auto; /* centers content on page */
-    width : 85%; /* need big margins in case of overscan on TV displays? */
+    width : 95%;
 }
 
 
 .band {
-    background-color: lightgrey;
+    background-color: lightgray;
     /*padding: 3%;*/
     clear:left; /* keep the bands from getting into the gallery */
 }
@@ -46,6 +46,7 @@ p.bodyText {
     /* 100% - 16% = 84% for columns */
     /* 84% / 8 = 10.5% per column */
     width : 10.5%;
+    height : 300px; /* this wll give a fixed vertical grid alignment */
     /*margin : 1%;*/
     margin: 1% 1% 1% 1%;
 }
@@ -55,6 +56,11 @@ p.bodyText {
     min-width: 100%;
 }
 
+@media screen and (max-width : 2200px) {
+    .galleryItem {
+        height : 230px;
+    }
+}
 @media screen and (max-width : 1800px) {
     /* for a 6 column grid with 1% margins 6 x 2 = 12% margin */
     /* 100% - 12% = 88% for columns */
@@ -93,6 +99,9 @@ p.bodyText {
     .galleryItem {
         width : 46%;
         margin: 0px 1%;
+    }
+    #page {
+        width : 100%;
     }
 }
 
