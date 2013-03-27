@@ -97,7 +97,7 @@ $(document).ready(function () {
         console.log("draw_all called; old images erased");
         // load images from myItems into gallery
         console.log("myItems.length is ", myItems.length);
-        if (myItems.length == 0) {
+        if (myItems.length === 0) {
             alert("No items to display. Try loading some.");
         }
         for(var i = 0; i < myItems.length; i++ ) {

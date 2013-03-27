@@ -4,3 +4,7 @@
 images/samples/*
 
 .idea/dictionaries/dan.xml
+
+.idea/jsLinters/jshint.xml
+
+.idea/jsLinters/jslint.xml
