@@ -68,11 +68,21 @@ p.bodyText {
     .galleryItem {
         width : 14.666666667%;
         margin: 0px 1%;
+        height : 300px;
     }
 }
 
-
 @media screen and (max-width : 1400px) {
+    /* for a 5 column grid with 1% margins 5 x 2 = 10% margin */
+    /* 100% - 10% = 90% for columns */
+    /* 90% / 5 = per column */
+    .galleryItem {
+        width : 18%;
+        margin: 0px 1%;
+    }
+}
+
+@media screen and (max-width : 1200px) {
     /* for a 4 column grid with 1% margins 4 x 2 = 8% margin */
     /* 100% - 8% = 92% for columns */
     /* 92% / 4 = per column */
@@ -82,7 +92,7 @@ p.bodyText {
     }
 }
 
-@media screen and (max-width : 1000px) {
+@media screen and (max-width : 900px) {
     /* for a 3 column grid with 2% margins 3 x 4 = 12% margin */
     /* 100% - 12% = 88% for columns */
     /* 88% / 3 = 29.333333333% per column */
