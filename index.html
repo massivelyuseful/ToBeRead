@@ -5,6 +5,12 @@
     <title>To Be Read</title>
     <!--<link href="styles.css" rel="stylesheet" type="text/css">-->
     <link href="styles.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+        // Google Analytics - top half - per https://developers.google.com/analytics/devguides/collection/gajs/?hl=de-DE
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39500015-1']);
+        _gaq.push(['_trackPageview']);
+    </script>
 </head>
 <body>
 <div id = "page">
@@ -13,15 +19,27 @@
         <p class="bodyText">See all the books you want to read in one place: everywhere</p>
 
         <p class = "smallText">Manipulate data
-            <button id="load_xml_books">Load Books from XML</button>
-            <button id="load_google_books">Load Books from Dan's Google TBR</button>
-            <button id="drop_items">Forget all items</button>
-
+            <button id="load_xml_books"
+                    onclick="_gaq.push(['_trackEvent', 'load_xml_books', 'clicked'])"
+                    >Load Books from XML</button>
+            <button id="load_google_books"
+                    onclick="_gaq.push(['_trackEvent', 'load_google_books', 'clicked'])"
+                    >Load Books from Dan's Google TBR</button>
+            <button id="drop_items"
+                    onclick="_gaq.push(['_trackEvent', 'drop_items', 'clicked'])"
+                    >Forget all items</button>
         </p>
+
         <p class = "smallText">Control output
-            <button id="draw_items">Draw myItems</button>
-            <button id="load_lorempixel">Draw placeholders</button>
-            <button id="console_items">Print all items to console.log</button>
+            <button id="draw_items"
+                    onclick="_gaq.push(['_trackEvent', 'draw_items', 'clicked'])"
+                    >Draw myItems</button>
+            <button id="load_lorempixel"
+                    onclick="_gaq.push(['_trackEvent', 'load_lorempixel', 'clicked'])"
+                    >Draw placeholders</button>
+            <button id="console_items"
+                    onclick="_gaq.push(['_trackEvent', 'console_items', 'clicked'])"
+                    >Print all items to console.log</button>
         </p>
     </div>
 
@@ -109,11 +127,7 @@
     <script src="mainScript.js"></script>
 
     <script type="text/javascript">
-    // Google Analytics
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-39500015-1']);
-        _gaq.push(['_trackPageview']);
-
+    // Google Analytics - bottom half - per https://developers.google.com/analytics/devguides/collection/gajs/?hl=de-DE
         (function() {
             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';

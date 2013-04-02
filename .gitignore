@@ -8,3 +8,5 @@ images/samples/*
 .idea/jsLinters/jshint.xml
 
 .idea/jsLinters/jslint.xml
+
+hello.php
