@@ -18,31 +18,27 @@
 	    <h1>To Be Read</h1>
         <p class="bodyText">See all the books you want to read in one place: everywhere</p>
 
-        <p class = "smallText">Manipulate data
+        <p id = "programmerUI" class = "smallText">
             <button id="load_xml_books"
                     onclick="_gaq.push(['_trackEvent', 'load_xml_books', 'clicked'])"
                     >Load Books from XML</button>
             <button id="load_DanTBR_from_google_books"
                     onclick="_gaq.push(['_trackEvent', 'load_DanTBR_from_google_books', 'clicked'])"
                     >Load Books from Dan's Google TBR</button>
-            <button id="load_google_books"
-                    onclick="_gaq.push(['_trackEvent', 'load_google_books', 'clicked'])"
-                    >Load your books from Google Books</button>
             <button id="drop_items"
                     onclick="_gaq.push(['_trackEvent', 'drop_items', 'clicked'])"
                     >Forget all items</button>
-        </p>
-
-        <p class = "smallText">Control output
-            <button id="draw_items"
-                    onclick="_gaq.push(['_trackEvent', 'draw_items', 'clicked'])"
-                    >Draw myItems</button>
             <button id="load_lorempixel"
                     onclick="_gaq.push(['_trackEvent', 'load_lorempixel', 'clicked'])"
                     >Draw placeholders</button>
             <button id="console_items"
                     onclick="_gaq.push(['_trackEvent', 'console_items', 'clicked'])"
                     >Print all items to console.log</button>
+        </p>
+        <p id = "userUI" class = "smallText">
+            <button id="load_google_books"
+                    onclick="_gaq.push(['_trackEvent', 'load_google_books', 'clicked'])"
+                    >Load your books from Google Books</button>
         </p>
     </div>
 

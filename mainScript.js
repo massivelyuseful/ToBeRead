@@ -18,6 +18,20 @@ $(document).ready(function () {
         myItems[myItems.length] = anItem;
     }
 
+    function draw_items() {
+        $('.galleryItem img').attr('src', "images/1x1-pixel.png");
+        console.log("draw_items called; old images erased");
+        if (myItems.length === 0) {
+            alert("No items to display. Try loading some.");
+        } else {
+            for(var i = 0; i < myItems.length; i++ ) {
+                var divID = "#g" + i;
+                console.log(i, divID, myItems[i].imageURL);
+                $(divID).children('img').attr('src', myItems[i].imageURL);
+            }
+        }
+    }
+
     // load list of books from a local XML file - handy for bootstrapping, mockups, & testing
     $("#load_xml_books").click(function(){
         $.ajax({
@@ -34,9 +48,9 @@ $(document).ready(function () {
                         i = i+1;
                     }
                 );
+                draw_items();
             }
         });
-        // TODO: automatically display the books after loading the data
     });
 
     // load books from user's 'to read' shelf on Google Books; uses OAuth
@@ -86,6 +100,7 @@ $(document).ready(function () {
                         var img_url = json.items[i].volumeInfo.imageLinks.thumbnail;
                         addItem (new myItem(book_title, img_url));
                     }
+                    draw_items();
                 }
             });
         }
@@ -109,9 +124,10 @@ $(document).ready(function () {
                     var img_url = json.items[i].volumeInfo.imageLinks.thumbnail;
                     addItem (new myItem(book_title, img_url));
                 }
+                draw_items();
             }
         });
-
+        draw_items();
         // TODO: automatically display the books after loading the data
     });
 
@@ -136,28 +152,6 @@ $(document).ready(function () {
         console.log("Current contents of myItems:");
         for(var i = 0; i < myItems.length; i++ ) {
             console.log("  ", i, "|", myItems[i].itemTitle, "|",myItems[i].imageURL);
-        }
-    });
-
-    $("#hide_items").click(function hide_all() {
-        $('.galleryItem img').attr('src', "images/1x1-pixel.png");
-    });
-
-    $("#draw_items").click(function draw_all() {
-        $('.galleryItem img').attr('src', "images/1x1-pixel.png");
-        console.log("draw_all called; old images erased");
-        // load images from myItems into gallery
-        console.log("myItems.length is ", myItems.length);
-        if (myItems.length === 0) {
-            alert("No items to display. Try loading some.");
-        }
-        for(var i = 0; i < myItems.length; i++ ) {
-            var divID = "#g" + i;
-//            var selector = '"' + divID + ' img"' ;
-            console.log(i, divID, myItems[i].imageURL);
-            $(divID).children('img').attr('src', myItems[i].imageURL);
-//            $(selector).attr('src', myItems[i].imageURL);
-//            $(divID).img.attribute("src", myItems[i].imageURL);
         }
     });
 
