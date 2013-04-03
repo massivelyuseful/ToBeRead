@@ -39,14 +39,65 @@ $(document).ready(function () {
         // TODO: automatically display the books after loading the data
     });
 
-    // load books from specified Google Books shelf
+    // load books from user's 'to read' shelf on Google Books; uses OAuth
+    // following example at https://code.google.com/p/google-api-javascript-client/source/browse/samples/authSample.html
     $("#load_google_books").click(function(){
+        // TODO: allow selecting arbitrary shelf instead of only using the built-in 'to-read' shelf
+        var myAPIkey = 'AIzaSyArupT8Pq-t5lN2ke_CVtt6M9PgbfRigzM';
+        var myClientID = '122484679214.apps.googleusercontent.com';
+        var googleBooksAPIscope = 'https://www.googleapis.com/auth/books';
+        var to_read_shelf_ID = 2;         // magic number for 'To Read' shelf is 2 per https://developers.google.com/books/docs/v1/using#ids
+
+        var oauthConfig = {
+            'client_id' : myClientID,
+            'scope'     : googleBooksAPIscope,
+            'immediate' : true
+        } // TODO: consider whether that immediate: true is needed in oauthConfig.
+
+        gapi.client.setApiKey(myAPIkey); // only needed for non-authorized API requests
+        gapi.auth.authorize({client_id : myClientID, scope : googleBooksAPIscope }, handleAuthResult);
+
+        function handleAuthResult(authResult) {
+            if (authResult && !authResult.error) {
+                var myToken = gapi.auth.getToken().access_token;
+                console.log("Your access token is: " + myToken);
+                // now we can make authenticated API calls
+                getBooksByShelfID(to_read_shelf_ID, myToken );
+            } else {
+                console.log("auth didn't work, so let's see about that...");
+                gapi.auth.authorize({client_id : myClientID, scope : googleBooksAPIscope, immediate : false}, handleAuthResult);
+//              // this prompts over and over again until you give permission; answering no just prompts again
+            }
+        }
+
+        function getBooksByShelfID(shelf_id, token) {
+            var ajax_url = 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/'
+                + shelf_id
+                + '/volumes?access_token='
+                + token;
+            console.log('sending a request to ' + ajax_url);
+            $.getJSON(ajax_url, function(json) {
+                if (json.items) {
+                    console.log("I got books from that shelf!");
+                    console.log(json.items);
+                    // why am I using traditional for (i = 0, i < end, i++) iterator instead of using .each?
+                    for (var i = 0; i < json.items.length; i++) {
+                        var book_title = json.items[i].volumeInfo.title;
+                        var img_url = json.items[i].volumeInfo.imageLinks.thumbnail;
+                        addItem (new myItem(book_title, img_url));
+                    }
+                }
+            });
+        }
+    });
+
+    // load books from Dan's hardcoded TBR Google Books shelf
+    $("#load_DanTBR_from_google_books").click(function(){
+        // Because this shelf is set to public, no OAuth access token is needed; can just use app's API key.
         // to get all the books from my public TBR shelf, I need to use a few things - hardcoding for now:
-        // TODO: clean up hardcoding!
-        // TODO: use OAuth 2 instead of API key
         // user ID (uid) =  114923424691622086388
         // shelf ID (as_coll) = 1001
-        // API key =  AIzaSyArupT8Pq-t5lN2ke_CVtt6M9PgbfRigzM  TODO: move key from git source to unmanaged config file
+        // API key =  AIzaSyArupT8Pq-t5lN2ke_CVtt6M9PgbfRigzM
         // https://www.googleapis.com/books/v1/users/1112223334445556677/bookshelves/3/volumes?key=yourAPIKey
         // https://www.googleapis.com/books/v1/users/114923424691622086388/bookshelves/1001/volumes?key=AIzaSyArupT8Pq-t5lN2ke_CVtt6M9PgbfRigzM
 
