@@ -141,6 +141,7 @@ $(document).ready(function () {
             $(imgID).attr("src", "");
         }
         myItems.length = 0; // empty the array
+        draw_items();
     });
 
     $("#load_lorempixel").click(function () {
