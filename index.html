@@ -16,9 +16,13 @@
 <div id = "page">
     <div class = "band" id = "header">
 	    <h1>To Be Read</h1>
-        <p class="bodyText">See all the books you want to read in one place: everywhere</p>
+        <p class="bodyText">
+            See all the books you want to read in one place: everywhere
+            <img id = "prefs_gear" src = "images/Farm-Fresh_cog.png" alt="configure">
+        </p>
 
-        <p id = "programmerUI" class = "smallText">
+
+        <p id = "programmerUI" class = "interface">
             <button id="load_xml_books"
                     onclick="_gaq.push(['_trackEvent', 'load_xml_books', 'clicked'])"
                     >Load Books from XML</button>
@@ -35,7 +39,7 @@
                     onclick="_gaq.push(['_trackEvent', 'console_items', 'clicked'])"
                     >Print all items to console.log</button>
         </p>
-        <p id = "userUI" class = "smallText">
+        <p id = "userUI" class = "interface">
             <button id="load_google_books"
                     onclick="_gaq.push(['_trackEvent', 'load_google_books', 'clicked'])"
                     >Load your books from Google Books</button>

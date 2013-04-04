@@ -155,5 +155,10 @@ $(document).ready(function () {
         }
     });
 
+    $("#prefs_gear").click(function(){
+       // show/hide the controls
+        $('.interface').toggle();
+    });
+
 });
 
